@@ -9,8 +9,8 @@ warnings.filterwarnings('ignore')
 
 # Load trained models
 try:
-    model1 = tf.keras.models.load_model('C:\\Users\\Saiku\Downloads\\Projects GitHub\\Weapons Classification custom and Vgg19\\vgg19_multilabel_model_sample.h5')
-    model2 = tf.keras.models.load_model('C:\\Users\\Saiku\\Downloads\\Projects GitHub\\Weapons Classification custom and Vgg19\\binary_cnn_model.h5')
+    model1 = tf.keras.models.load_model("vgg19_multilabel_model_sample.h5")
+    model2 = tf.keras.models.load_model("binary_cnn_model.h5")
 except FileNotFoundError:
     st.error("Trained models not found. Ensure both model files are in the specified directory.")
     st.stop()

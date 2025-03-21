@@ -4,8 +4,28 @@ from PIL import Image
 import pandas as pd
 import numpy as np
 import sklearn
+import gdown
+import os
 import warnings
+
 warnings.filterwarnings('ignore')
+
+# Function to download models from Google Drive if they are missing
+def download_model(file_id, output):
+    if not os.path.exists(output):
+        st.info(f"Downloading {output} from Google Drive...")
+        gdown.download(f"https://drive.google.com/uc?id={file_id}", output, quiet=False)
+        st.success(f"{output} download complete!")
+
+# Google Drive File IDs for models
+models = {
+    "vgg19_multilabel_model_sample.h5": "1D4fx9bD9t4b-CE2sJDMm0wLLk9g1hyIQ",
+    "binary_cnn_model.h5": "15X2VokJ3l-JiQtzi0OjoG7_1YMrRIfBi"  # Replace with actual file ID
+}
+
+# Check and download models if necessary
+for model_name, model_id in models.items():
+    download_model(model_id, model_name)
 
 # Load trained models
 try:
@@ -17,7 +37,6 @@ except FileNotFoundError:
 
 # Function to preprocess the uploaded image
 def preprocess_image(uploaded_file, target_size):
-
     try:
         image = Image.open(uploaded_file)
         image = image.resize(target_size)
@@ -30,7 +49,7 @@ def preprocess_image(uploaded_file, target_size):
         st.error(f"Error processing image: {e}")
         return None
 
-# Streamlit app
+# Streamlit app UI
 st.title("Image Classification with Two Models")
 
 # File upload
@@ -58,13 +77,14 @@ if uploaded_file is not None:
             # Define class labels for both models
             class_labels = ['Automatic Rifle','Bows or Arrows','Knifes','Short Gun',
                             'Sniper', 'Spears or Polearms', 'SubMachine Gun','Sword','pistols']
+
             # Display predictions in two columns
             col1, col2 = st.columns(2)
 
             with col1:
                 st.markdown("<h1 style='color:blue;'>Model 1 (VGG19) Prediction</h1>", unsafe_allow_html=True)
-                st.write(f"Predicted Class: {class_labels[class_index1]}", style={'font-size': '20px'})
+                st.write(f"Predicted Class: {class_labels[class_index1]}")
 
             with col2:
                 st.markdown("<h1 style='color:green;'>Model 2 (Custom CNN) Prediction</h1>", unsafe_allow_html=True)
-                st.write(f"Predicted Class: {class_labels[class_index2]}", style={'font-size': '20px'})
+                st.write(f"Predicted Class: {class_labels[class_index2]}")

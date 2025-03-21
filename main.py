@@ -3,6 +3,7 @@ import tensorflow as tf
 from PIL import Image
 import pandas as pd
 import numpy as np
+import sklearn
 import warnings
 warnings.filterwarnings('ignore')
 

@@ -17,8 +17,10 @@ defusedxml==0.7.1
 docopt==0.6.2
 executing==2.2.0
 fastjsonschema==2.21.1
+filelock==3.18.0
 flatbuffers==25.2.10
 gast==0.6.0
+gdown==5.2.0
 gitdb==4.0.12
 GitPython==3.1.44
 google-pasta==0.2.0
@@ -66,6 +68,7 @@ pure_eval==0.2.3
 pyarrow==19.0.1
 pydeck==0.9.1
 Pygments==2.19.1
+PySocks==1.7.1
 python-dateutil==2.9.0.post0
 pytz==2025.1
 pywin32==309
@@ -91,6 +94,7 @@ threadpoolctl==3.5.0
 tinycss2==1.4.0
 toml==0.10.2
 tornado==6.4.2
+tqdm==4.67.1
 traitlets==5.14.3
 typing_extensions==4.12.2
 tzdata==2025.1
